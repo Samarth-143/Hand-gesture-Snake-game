@@ -53,10 +53,10 @@ class HandDetector:
         landmark_list = self.find_position(img)
         if len(landmark_list) == 0:
             return None
-        wrist = landmark_list[0]
-        middle_tip = landmark_list[12]
-        dx = middle_tip[1] - wrist[1]
-        dy = middle_tip[2] - wrist[2]
+        wrist = landmark_list[0]  # id 0
+        thumb_tip = landmark_list[4]  # id 4 is thumb tip in MediaPipe
+        dx = thumb_tip[1] - wrist[1]
+        dy = thumb_tip[2] - wrist[2]
         angle = math.degrees(math.atan2(dy, dx))
         if -45 <= angle < 45:
             return 'RIGHT'
